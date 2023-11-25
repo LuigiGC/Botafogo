@@ -1,0 +1,71 @@
+
+header{
+    display: block;
+    color: white;
+}
+
+#headerHome{
+    background-color: black;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    padding: 0.5em 1em;
+    align-items: center;
+
+}
+
+#bSair{
+    background-color: grey;
+    border: white;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+}
+h1{
+    flex-grow: 1;
+}
+
+#opcaoElencos{
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    @media screen and (max-width: 768px) {
+        display: grid;
+        grid-template-columns: 1;
+        
+        
+    }
+    
+    
+}
+#bOpcaoElencos{
+    border-color: black;
+    background-color: gray;
+    color: whitesmoke;
+    cursor: pointer;
+    min-width: 150px;
+    width: 400px;
+    height: 100px;
+    margin: 50px;
+    @media screen and (max-width: 768px) {
+        width: 250px;
+    }
+}
+
+#selecionarElenco{
+    background-color: black;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    display: none;
+    margin: 1em auto;
+    font-size: larger;
+    @media screen and (max-width: 768px) {
+        display:none;
+    }
+}

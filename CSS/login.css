@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap');
-
 #titulo{
     font-family: 'Alumni Sans Inline One', sans-serif;
     font-weight: normal; 
@@ -51,6 +50,14 @@
     margin:auto;
     width: 70vw;
     min-width: 800px;
+    @media screen and (max-width:768px) {
+        flex-direction: column;
+        width: 100vw;
+        margin: 0px;
+        min-width: 0px;
+        
+    }
+    
 }
 body{
     display: flex;

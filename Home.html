@@ -5,14 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="imagex/png" href="Imagens/logoBotago.png"/>
-    <link href="CSS/style.css" rel="stylesheet">
+    <link href="CSS/home.css" rel="stylesheet">
+    <script src="Scripts/home.js" defer></script>
     <title>Botafogo</title>
 </head>
 <body>
-    <div>
+    <header id="headerHome">
         <h1>
-            Logado!
+            Atletas Botafogo 2023.2
         </h1>
+        <button id="bSair" onclick="bSair()">Logout</button>
+    </header>
+
+    <div id="opcaoElencos">
+        <button id="bOpcaoElencos" onclick="elencoT()">Elenco Completo</button>
+        <button id="bOpcaoElencos" onclick="elencoM()">Masculino</button>
+        <button id="bOpcaoElencos" onclick="elencoF()">Feminino</button>
     </div>
+    <select id="selecionarElenco">
+        <option value disabled>Selecione um elenco</option>
+        <option value="elencoCompleto">Elenco Completo</option>
+        <option value="feminino">Feminino</option>
+        <option value="masculino">Masculino</option>
+    </select>
+
 </body>
 </html>
