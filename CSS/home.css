@@ -1,4 +1,6 @@
-
+body{
+    background-color: #d1d1d1;
+}
 header{
     display: block;
     color: white;
