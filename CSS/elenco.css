@@ -1,0 +1,44 @@
+#voltarElenco{
+ background-color: black;
+ color:white;
+ width: 99vw;
+ height: 150px;
+ font-size: 2em;
+ text-align: center;
+ border: 0;
+ cursor: pointer;
+}
+body{
+    background-color: black;
+    margin: 8px;
+}
+
+#nomeJog{
+    color:white;
+
+}
+#divPrincipal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+#divJog{
+    margin: 15px;
+    width: fit-content;
+    text-align: center;
+}
+#descricaoJog{
+}
+#posJog{
+    color:white;
+    text-transform: uppercase;
+}
+#divInfoJog{
+    margin: 1px;
+    font-size: 1.4em;
+    color: white;
+}
