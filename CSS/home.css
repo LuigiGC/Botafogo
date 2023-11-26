@@ -95,6 +95,7 @@ h1{
     display: grid;
     gap: 1em;
     margin: auto;
+    max-width: 1200px;
     grid-template-columns: 1fr 1fr 1fr 1fr; 
     @media screen and (max-width: 1024px) {
         grid-template-columns: 1fr 1fr;
