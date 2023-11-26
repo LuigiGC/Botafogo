@@ -32,177 +32,129 @@ const selectOp = () => {
 
 }
 
+const fazerCartao = (atleta) => {
+    const container = document.createElement('article');
+    const titulo = document.createElement('h3');
+    const imagem = document.createElement('img');
+    const saibaMais = document.createElement('p');
+
+
+    saibaMais.style.backgroundColor = 'black';
+    saibaMais.style.color = 'white';
+    saibaMais.style.margin = '2px';
+    saibaMais.style.padding = '1em';
+
+
+
+
+    container.style.width = 'min-content';
+    container.style.backgroundColor = 'grey';
+    container.style.textAlign = 'center';
+    container.style.margin = 'auto';
+    container.style.padding ='0.5em';
+    container.style.cursor = 'pointer';
+
+    container.dataset.id = atleta.id;
+    container.dataset.altura = atleta.altura;
+    container.dataset.nome_completo = atleta.nome_completo;
+    container.dataset.nascimento = atleta.nascimento;
+
+    titulo.innerHTML = atleta.nome;
+    imagem.src = atleta.imagem;
+    imagem.alt = `foto de ${atleta.nome}`;
+    saibaMais.innerHTML = 'Clique para saber mais!';
+
+    container.appendChild(titulo);
+    container.appendChild(imagem);
+    container.appendChild(saibaMais);
+
+    return container;
+};
+
+const pegar_coisas = async (caminho) => {
+    const resposta = await fetch(caminho);
+    const dados = await resposta.json();
+    return dados;
+}
+const atualizarDivComElenco = async (urlEndpoint, containerDiv) => {
+    const entrada = await pegar_coisas(urlEndpoint);
+
+    while (containerDiv.firstChild) {
+        containerDiv.removeChild(containerDiv.firstChild);
+    }
+
+    for (const atleta of entrada) {
+        const cartao = fazerCartao(atleta);
+        containerDiv.appendChild(cartao);
+    }
+};
+
 
 
 const elencoT = () =>{
     const urlEndpoint = "https://botafogo-atletas.mange.li/all"
 
-    const fazerCartao = (atleta) =>{
-        
-        const container = document.createElement('article');
-        const titulo = document.createElement('h3');
-        const imagem = document.createElement('img');
-        const descricao = document.createElement('p');
-        
-        container.style.width = '15rem';
-        container.style.backgroundColor = 'grey';
-        container.style.textAlign = 'center';
-        container.style.margin = '10px';
-        
-        container.dataset.id = atleta.id;
-        container.dataset.altura = atleta.altura;
-        container.dataset.nome_completo = atleta.nome_completo;
-        container.dataset.nascimento = atleta.nascimento;
-        
-        
-        titulo.innerHTML = atleta.nome;
-        imagem.src = atleta.imagem;
-        imagem.alt = `foto de ${atleta.nome}`;
-        descricao.innerHTML = atleta.descricao;
+    const containerDiv = document.getElementById('containerCartoes');
 
-        container.appendChild(titulo);
-        container.appendChild(imagem);
-        container.appendChild(descricao);
-
-        //container.onclick = handleClick;
-
-        document.body.appendChild(container);
-    }
-    const pegar_coisas = async (caminho) => {
-        const resposta = await fetch(caminho);
-        const dados = await resposta.json();
-        return dados;
-    }
-    pegar_coisas(urlEndpoint).then( (entrada) => console.log(entrada));
-    pegar_coisas(urlEndpoint)
-        .then((entrada) =>{
-            for (atleta of entrada){
-                fazerCartao(atleta)
+    if (containerDiv) {
+        atualizarDivComElenco(urlEndpoint, containerDiv);
+        
+        containerDiv.addEventListener('click', (event) => {
+            const clickedCard = event.target.closest('article');
+            if (clickedCard) {
+                const atletaId = clickedCard.dataset.id;
+                redirecionarParaPaginaAtleta(atletaId);
             }
         });
+    }
 }
 
 
-/*const elencoT = () =>{
-    const urlEndpoint = "https://botafogo-atletas.mange.li/all"
 
-    const fetchDados = () =>{
-        fetch(urlEndpoint).then(response => response.json())
-        .then(data => displayData(data))
-        .catch(error => console.error('Erro ao buscar dados:', error));
-    
-    }
-    const displayData = (data) =>{
-        const cardsContainer = document.getElementById("containerCartoes");
-
-        cardsContainer.innerHTML = "";
-
-        data.forEach(item =>{
-            const card = document.createElement('article');
-            card.className = 'card';
-
-            cardsContainer.appendChild(card);
-        });
-    }
-    fetchDados();
-    //window.location = './elenco.html'
-}*/
 
 const elencoM = () =>{
     const urlEndpoint = "https://botafogo-atletas.mange.li/masculino"
 
-    const fazerCartao = (atleta) =>{
-        
-        const container = document.createElement('article');
-        const titulo = document.createElement('h3');
-        const imagem = document.createElement('img');
-        const descricao = document.createElement('p');
-        
-        container.style.width = '15rem';
-        container.style.backgroundColor = 'grey';
-        container.style.textAlign = 'center';
-        container.style.margin = '10px';
-        
-        container.dataset.id = atleta.id;
-        container.dataset.altura = atleta.altura;
-        container.dataset.nome_completo = atleta.nome_completo;
-        container.dataset.nascimento = atleta.nascimento;
-        
-        
-        titulo.innerHTML = atleta.nome;
-        imagem.src = atleta.imagem;
-        imagem.alt = `foto de ${atleta.nome}`;
-        descricao.innerHTML = atleta.descricao;
+    const containerDiv = document.getElementById('containerCartoes');
 
-        container.appendChild(titulo);
-        container.appendChild(imagem);
-        container.appendChild(descricao);
-
-        //container.onclick = handleClick;
-
-        document.body.appendChild(container);
-    }
-    const pegar_coisas = async (caminho) => {
-        const resposta = await fetch(caminho);
-        const dados = await resposta.json();
-        return dados;
-    }
-    pegar_coisas(urlEndpoint).then( (entrada) => console.log(entrada));
-    pegar_coisas(urlEndpoint)
-        .then((entrada) =>{
-            for (atleta of entrada){
-                fazerCartao(atleta)
+    if (containerDiv) {
+        atualizarDivComElenco(urlEndpoint, containerDiv);
+        
+        containerDiv.addEventListener('click', (event) => {
+            const clickedCard = event.target.closest('article');
+            if (clickedCard) {
+                const atletaId = clickedCard.dataset.id;
+                redirecionarParaPaginaAtleta(atletaId);
             }
         });
+    }
 
 }
 const elencoF = () =>{
     const urlEndpoint = "https://botafogo-atletas.mange.li/feminino"
 
-    const fazerCartao = (atleta) =>{
-        const container = document.createElement('article');
-        const titulo = document.createElement('h3');
-        const imagem = document.createElement('img');
-        const descricao = document.createElement('p');
-        
-        container.style.width = '15rem';
-        container.style.backgroundColor = 'grey';
-        container.style.textAlign = 'center';
-        container.style.margin = '10px';
-        
-        container.dataset.id = atleta.id;
-        container.dataset.altura = atleta.altura;
-        container.dataset.nome_completo = atleta.nome_completo;
-        container.dataset.nascimento = atleta.nascimento;
-        
-        
-        titulo.innerHTML = atleta.nome;
-        imagem.src = atleta.imagem;
-        imagem.alt = `foto de ${atleta.nome}`;
-        descricao.innerHTML = atleta.descricao;
+    const containerDiv = document.getElementById('containerCartoes');
 
-        container.appendChild(titulo);
-        container.appendChild(imagem);
-        container.appendChild(descricao);
-
-        //container.onclick = handleClick;
-
-        document.body.appendChild(container);
-    }
-    const pegar_coisas = async (caminho) => {
-        const resposta = await fetch(caminho);
-        const dados = await resposta.json();
-        return dados;
-    }
-    pegar_coisas(urlEndpoint).then( (entrada) => console.log(entrada));
-    pegar_coisas(urlEndpoint)
-        .then((entrada) =>{
-            for (atleta of entrada){
-                fazerCartao(atleta)
+    if (containerDiv) {
+        atualizarDivComElenco(urlEndpoint, containerDiv);
+        
+        containerDiv.addEventListener('click', (event) => {
+            const clickedCard = event.target.closest('article');
+            if (clickedCard) {
+                const atletaId = clickedCard.dataset.id;
+                redirecionarParaPaginaAtleta(atletaId);
             }
         });
+    }
 
+  
 }   
+const redirecionarParaPaginaAtleta = (atletaId) => {
+    const paginaAtletaURL = `elenco.html?id=${atletaId}`;
+    window.location.href = paginaAtletaURL;
+};
+
+
 const bSair = () => {
     localStorage.removeItem("autorizado");
     console.log("Login retirado");
